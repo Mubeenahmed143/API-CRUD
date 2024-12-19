@@ -1,0 +1,163 @@
+﻿@model simple.Models.Products
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1 class="text-center mt-4 text-primary">Create Product</h1>
+
+<div class="container mt-5">
+    <!-- Card Container for Form -->
+    <div class="card shadow-lg rounded">
+        <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">Product Details</h4>
+        </div>
+        <div class="card-body">
+            <form asp-action="Create">
+                <!-- Validation Error Summary -->
+                <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+
+                <!-- Product Name Field -->
+                <div class="mb-4">
+                    <label asp-for="Name" class="form-label fw-bold"></label>
+                    <input asp-for="Name" class="form-control form-control-lg" placeholder="Enter product name" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+                <!-- Product Price Field -->
+                <div class="mb-4">
+                    <label asp-for="Price" class="form-label fw-bold"></label>
+                    <input asp-for="Price" class="form-control form-control-lg" placeholder="Enter product price" />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+
+                <!-- Product Quantity Field -->
+                <div class="mb-4">
+                    <label asp-for="Quantity" class="form-label fw-bold"></label>
+                    <input asp-for="Quantity" class="form-control form-control-lg" placeholder="Enter product quantity" />
+                    <span asp-validation-for="Quantity" class="text-danger"></span>
+                </div>
+
+                <!-- Product Description Field -->
+                <div class="mb-4">
+                    <label asp-for="Desc" class="form-label fw-bold"></label>
+                    <textarea asp-for="Desc" class="form-control form-control-lg" rows="4" placeholder="Enter product description"></textarea>
+                    <span asp-validation-for="Desc" class="text-danger"></span>
+                </div>
+
+                <!-- New Image Upload -->
+                <div class="mb-3">
+                    <label asp-for="Image" class="form-label">Upload New Image</label>
+                    <input asp-for="Image" type="file" name="Image" class="form-control" accept="image/*" id="newImageInput" />
+                    <span asp-validation-for="Image" class="text-danger"></span>
+                </div>
+
+                <!-- New Image Preview -->
+                <div class="mb-3" id="newImagePreviewContainer" style="display: none;">
+                    <label class="form-label">New Image Preview</label>
+                    <div class="position-relative">
+                        <img id="newImagePreview" class="img-thumbnail" style="width: 150px; height: 150px; object-fit: cover;" />
+                        <div class="position-absolute top-0 start-0 p-1">
+                            <i class="bi bi-image" style="font-size: 24px; color: #007bff;"></i>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Submit Button -->
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-success btn-lg">Create Product</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Back to List Button -->
+    <div class="text-center mt-4">
+        <a asp-action="Index" class="btn btn-secondary btn-lg">Back to Product List</a>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+<!-- Custom CSS -->
+<style>
+    /* Card and Form Styling */
+    .card {
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-header {
+        background-color: #007bff;
+        border-radius: 10px 10px 0 0;
+    }
+
+    .form-label {
+        font-weight: 600;
+        color: #495057;
+    }
+
+    .form-control-lg {
+        padding: 1.25rem 1rem;
+        font-size: 1.125rem;
+        border-radius: 8px;
+    }
+
+    .btn-lg {
+        font-size: 1.25rem;
+        padding: 10px 20px;
+        border-radius: 8px;
+    }
+
+    .btn-secondary {
+        font-size: 1.125rem;
+        padding: 10px 20px;
+        border-radius: 8px;
+    }
+
+    /* Button Hover Effects */
+    .btn-success:hover {
+        background-color: #218838;
+        border-color: #1e7e34;
+    }
+
+    .btn-secondary:hover {
+        background-color: #5a6268;
+        border-color: #545b62;
+    }
+
+    /* Validation Errors */
+    .text-danger {
+        font-size: 0.875rem;
+        margin-top: 5px;
+    }
+
+    /* Heading Styles */
+    h1 {
+        font-size: 2.5rem;
+        font-weight: 600;
+        color: #007bff;
+    }
+
+    .card-body {
+        padding: 2rem;
+    }
+
+    /* Margin and Padding Adjustments */
+    .container {
+        padding: 20px;
+    }
+
+    .mb-4 {
+        margin-bottom: 1.5rem;
+    }
+
+    .d-grid {
+        margin-top: 20px;
+    }
+</style>
